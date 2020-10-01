@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 public class JpaMain {
 
@@ -24,37 +23,6 @@ public class JpaMain {
         tx.begin();
 
         try {
-            // 저장 persist
-//            Member member = new Member();
-//            member.setId(2L);
-//            member.setName("HelloB");
-//            em.persist(member);
-
-            // 조회 find
-            Member findMember = em.find(Member.class, 1L);
-            System.out.println(findMember.getId());
-            System.out.println(findMember.getName());
-
-            // 직접 쿼리를 날려야 할때 (ex: JPQL)
-            // 대상이 테이블이 아니고 객체 여야 한다.
-            // JPA 는 SQL 을 추상화한 JPQL 이라는 객체 지향 쿼리 언어 제공
-            // JPQL 은 엔티티 객체를 대상으로 쿼리
-            // SQL 은 데이터베이스 테이블을 대상으로 쿼리
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                    .setFirstResult(5)
-                    .setMaxResults(8)
-                    .getResultList();
-
-            for (Member member : result) {
-                System.out.println("member.name = " + member.getName());
-            }
-
-            // 삭제
-//            em.remove(findMember);
-            
-            // 업데이트
-            findMember.setName("HelloJPA");
-
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
