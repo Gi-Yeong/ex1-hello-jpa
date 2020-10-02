@@ -5,15 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Member {
+public class Product {
 
     @Id @GeneratedValue
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
+    private String name;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "product")
     private List<MemberProduct> memberProducts = new ArrayList<>();
 }

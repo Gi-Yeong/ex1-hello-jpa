@@ -1,0 +1,24 @@
+package jpabook.jpashop.hello_jpa;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+public class MemberProduct {
+
+    @Id @GeneratedValue
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
+
+    @ManyToOne
+    @JoinColumn(name = "PRODCUT_ID")
+    private Product product;
+
+    private int count;
+    private int price;
+
+    private LocalDateTime orderDateTime;
+}
