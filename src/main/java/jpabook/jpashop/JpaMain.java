@@ -1,12 +1,11 @@
 package jpabook.jpashop;
 
-import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.domain.Duck;
 
-import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 
 public class JpaMain {
 
@@ -19,22 +18,10 @@ public class JpaMain {
         tx.begin();
 
         try {
+            Duck duck = new Duck();
+            duck.setName("duck1");
 
-            List<Member> resultList = em.createQuery(
-                    "select m from Member m where m.name like '%kim%'", Member.class
-            ).getResultList();
-
-            //Criteria
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<Member> query = cb.createQuery(Member.class);
-
-            Root<Member> m = query.from(Member.class);
-
-            CriteriaQuery<Member> cq = query.select(m).where(cb.equal(m.get("name"), "kim"));
-            List<Member> resultList1 = em.createQuery(cq).getResultList();
-
-
-
+            em.persist(duck);
 
             tx.commit();
         } catch (Exception e) {
