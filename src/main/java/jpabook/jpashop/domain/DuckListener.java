@@ -3,7 +3,7 @@ package jpabook.jpashop.domain;
 import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
 
-// 리스너는 대상 엔티티를 파라미터로 받을 수 있다. 반환 타입은 void로 해야 한다.
+// 리스너는 대상 엔티티를 파라미터로 받을 수 있다. 반환 타입은 void 로 해야 한다.
 public class DuckListener {
 
     @PrePersist
